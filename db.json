@@ -186,6 +186,12 @@
       "categoriaId": 5,
       "titulo": "Resident Evil 8",
       "url": "https://www.youtube.com/watch?v=JSapXD9vxYA"
+    },
+    {
+      "titulo": "High Frequency Trading e computação",
+      "url": "https://www.youtube.com/watch?v=oQ4xTJ0sZsM",
+      "categoriaId": 3,
+      "id": 25
     }
   ]
 }
