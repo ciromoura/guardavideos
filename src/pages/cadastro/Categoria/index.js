@@ -4,10 +4,11 @@ import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
 import useForm from '../../../hooks/useForm';
+import categoriasRepository from '../../../repositories/categorias';
 
 function CadastroCategoria() {
     const valoresIniciais = {
-        nome: '',
+        titulo: '',
         descricao: '',
         cor: '',
     };
@@ -52,11 +53,21 @@ function CadastroCategoria() {
         <PageDefault>
             <h1>
                 Cadastro de Categoria:
-        {values.nome}
+        {values.titulo}
             </h1>
 
-            <form onSubmit={function handleSubmit(infosDoEvento) {
-                infosDoEvento.preventDefault();
+            <form onSubmit={(event) => {
+                event.preventDefault();
+
+
+                categoriasRepository.create({
+                    titulo: values.titulo,
+                    cor: values.cor
+                })
+                    .then(() => {
+                        console.log('Cadastrou com sucesso!');
+                    });
+
                 setCategorias([
                     ...categorias,
                     values,
@@ -67,9 +78,9 @@ function CadastroCategoria() {
             >
 
                 <FormField
-                    label="Nome da Categoria"
-                    name="nome"
-                    value={values.nome}
+                    label="Título da Categoria"
+                    name="titulo"
+                    value={values.titulo}
                     onChange={handleChange}
                 />
 
@@ -89,9 +100,9 @@ function CadastroCategoria() {
                     onChange={handleChange}
                 />
 
-                <Button>
+                <Button type="submit">
                     Cadastrar
-        </Button>
+                </Button>
             </form>
 
             {categorias.length === 0 && (
@@ -103,7 +114,7 @@ function CadastroCategoria() {
 
             <ul>
                 {categorias.map((categoria) => (
-                    <li key={`${categoria.titulo}`}>
+                    <li key={`${categoria.titulo}`} style={{ color: categoria.cor }}>
                         {categoria.titulo}
                     </li>
                 ))}
