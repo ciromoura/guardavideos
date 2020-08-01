@@ -5,6 +5,25 @@ import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
 import useForm from '../../../hooks/useForm';
 import categoriasRepository from '../../../repositories/categorias';
+import styled from 'styled-components';
+import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+
+const Table = styled.table`
+    border: 1px solid black;
+    border-collapse: collapse;
+`;
+const TH = styled.th`
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 8px;
+    text-align: left;
+`;
+const TD = styled.td`
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 8px;
+    text-align: left;
+`;
 
 function CadastroCategoria() {
     const valoresIniciais = {
@@ -107,13 +126,23 @@ function CadastroCategoria() {
                 borderColor: 'var(--primary)'
             }} />
             <h3> Categorias cadastradas: </h3>
-            <ul>
+            <Table>
+                <tr>
+                    <TH>Título</TH>
+                    <TH>Opções</TH>
+                </tr>
                 {categorias.map((categoria) => (
-                    <li key={`${categoria.titulo}`} style={{ color: categoria.cor }}>
-                        {categoria.titulo}
-                    </li>
+                    <tr>
+                        <TD key={`${categoria.titulo}`} style={{ color: categoria.cor }}>
+                            {categoria.titulo}
+                        </TD>
+                        <TD style={{ textAlign: 'center' }}>
+                            < FaEdit style={{ marginRight: '16px' }} />
+                            < FaTrashAlt />
+                        </TD>
+                    </tr>
                 ))}
-            </ul>
+            </Table>
             <br />
             <br />
             <Link className="ButtonLink" to="/">
