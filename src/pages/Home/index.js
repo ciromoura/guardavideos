@@ -91,7 +91,10 @@ function Home() {
       <Carousel
         category={dadosIniciais.categorias[4]}
       /> */}
+      <br />
+      <br />
     </PageDefault>
+
   );
 }
 

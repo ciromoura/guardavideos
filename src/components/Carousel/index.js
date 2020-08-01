@@ -42,6 +42,9 @@ function Carousel({
           );
         })}
       </Slider>
+      <hr style={{
+        borderColor: categoryColor,
+      }} />
     </VideoCardGroupContainer>
   );
 }
