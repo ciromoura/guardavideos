@@ -20,6 +20,19 @@ function create(objetoDoVideo) {
         });
 }
 
+function getLast() {
+    return fetch(`${URL_VIDEOS}/?_embed=videos&_sort=id&_order=desc&_limit=1`)
+        .then(async (respostaDoServidor) => {
+            if (respostaDoServidor.ok) {
+                const resposta = await respostaDoServidor.json();
+                return resposta;
+            }
+
+            throw new Error('Não foi possível pegar os dados :(');
+        });
+}
+
 export default {
     create,
+    getLast
 };

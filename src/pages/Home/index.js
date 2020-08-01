@@ -5,9 +5,11 @@ import BannerMain from '../../components/BannerMain';
 import Carousel from '../../components/Carousel';
 import PageDefault from '../../components/PageDefault';
 import categoriasRepository from '../../repositories/categorias';
+import videosRepository from '../../repositories/videos';
 
 function Home() {
   const [dadosIniciais, setDadosIniciais] = useState([]);
+  const [lastVideo, setLastVideo] = useState([]);
 
   useEffect(() => {
     // http://localhost:8080/categorias?_embed=videos
@@ -19,29 +21,47 @@ function Home() {
       .catch((err) => {
         console.log(err.message);
       });
+
+    videosRepository.getLast()
+      .then((lastVideo) => {
+        console.log(lastVideo[0].titulo);
+        setLastVideo(lastVideo);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+
   }, []);
 
   return (
     <PageDefault paddingAll={0}>
-      {dadosIniciais.length === 0 && (<div>Loading...</div>)}
 
-      {dadosIniciais.map((categoria, indice) => {
+      {lastVideo.length === 0 && (<div>Loading...</div>)}
+
+      {lastVideo.map((video, indice) => {
         if (indice === 0) {
           return (
-            <div key={categoria.id}>
+            <div key={video.id}>
               <BannerMain
-                videoTitle={dadosIniciais[0].videos[0].titulo}
-                url={dadosIniciais[0].videos[0].url}
-                videoDescription={dadosIniciais[0].videos[0].description}
-              />
-              <Carousel
-                ignoreFirstVideo
-                category={dadosIniciais[0]}
+                videoTitle={lastVideo[0].titulo}
+                url={lastVideo[0].url}
+                videoDescription={lastVideo[0].description}
               />
             </div>
           );
         }
 
+        return (
+          <Carousel
+            key={video.id}
+            category={video}
+          />
+        );
+      })}
+
+      {dadosIniciais.length === 0 && (<div>Loading...</div>)}
+
+      {dadosIniciais.map((categoria, indice) => {
         return (
           <Carousel
             key={categoria.id}
