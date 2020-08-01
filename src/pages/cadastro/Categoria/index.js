@@ -9,7 +9,8 @@ import categoriasRepository from '../../../repositories/categorias';
 function CadastroCategoria() {
     const valoresIniciais = {
         titulo: '',
-        descricao: '',
+        linkExtra: '',
+        linkExtraTexto: '',
         cor: '',
     };
 
@@ -21,7 +22,7 @@ function CadastroCategoria() {
         const URL_TOP = window.location.hostname.includes('localhost')
             ? 'http://localhost:8080/categorias'
             : 'https://guardavideos.herokuapp.com/categorias';
-        // E a ju ama variáveis
+
         fetch(URL_TOP)
             .then(async (respostaDoServidor) => {
                 const resposta = await respostaDoServidor.json();
@@ -30,23 +31,6 @@ function CadastroCategoria() {
                 ]);
             });
 
-        // setTimeout(() => {
-        //   setCategorias([
-        //     ...categorias,
-        //     {
-        //       id: 1,
-        //       nome: 'Front End',
-        //       descricao: 'Uma categoria bacanudassa',
-        //       cor: '#cbd1ff',
-        //     },
-        //     {
-        //       id: 2,
-        //       nome: 'Back End',
-        //       descricao: 'Outra categoria bacanudassa',
-        //       cor: '#cbd1ff',
-        //     },
-        //   ]);
-        // }, 4 * 1000);
     }, []);
 
     return (
@@ -62,7 +46,11 @@ function CadastroCategoria() {
 
                 categoriasRepository.create({
                     titulo: values.titulo,
-                    cor: values.cor
+                    cor: values.cor,
+                    link_extra: {
+                        text: values.linkExtraTexto,
+                        url: values.linkExtra
+                    }
                 })
                     .then(() => {
                         console.log('Cadastrou com sucesso!');
@@ -85,10 +73,16 @@ function CadastroCategoria() {
                 />
 
                 <FormField
-                    label="Descrição"
-                    type="textarea"
-                    name="descricao"
-                    value={values.descricao}
+                    label="Extra - link"
+                    name="linkExtra"
+                    value={values.linkExtra}
+                    onChange={handleChange}
+                />
+
+                <FormField
+                    label="Extra - Descrição"
+                    name="linkExtraTexto"
+                    value={values.linkExtraTexto}
                     onChange={handleChange}
                 />
 
@@ -106,12 +100,13 @@ function CadastroCategoria() {
             </form>
 
             {categorias.length === 0 && (
-                <div>
-                    {/* Cargando... */}
-          Loading...
-                </div>
+                <div> Loading... </div>
             )}
-
+            <hr style={{
+                margin: '30px 0',
+                borderColor: 'var(--primary)'
+            }} />
+            <h3> Categorias cadastradas: </h3>
             <ul>
                 {categorias.map((categoria) => (
                     <li key={`${categoria.titulo}`} style={{ color: categoria.cor }}>

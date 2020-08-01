@@ -25,7 +25,7 @@ function VideoCard({ videoTitle, videoURL, categoryColor }) {
         backgroundColor: '#000',
         margin: '-16px',
         padding: '8px',
-        opacity: '0.9'
+        opacity: '0.8'
       }}>{videoTitle}</p>
     </VideoCardContainer>
   );

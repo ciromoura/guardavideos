@@ -7,7 +7,7 @@ const Button = styled.button`
     background: var(--black);
     box-sizing: border-box;
     cursor: pointer;
-    padding: 16px 24px;
+    padding: 8px;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
@@ -18,7 +18,9 @@ const Button = styled.button`
     transition: opacity .3s;
     &:hover,
     &:focus {
-    opacity: .5;
+        color: var(--black);
+        border: 1px solid var(--black);
+        background: var(--white);
     }
 `;
 

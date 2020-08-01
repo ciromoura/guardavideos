@@ -44,7 +44,10 @@
     {
       "titulo": "Séries",
       "cor": "#00ffbf",
-      "id": 6
+      "id": 6,
+      "link_extra": {
+        "text": "Lista das melhores séries"
+      }
     }
   ],
   "videos": [
