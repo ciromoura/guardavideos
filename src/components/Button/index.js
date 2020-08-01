@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const Button = styled.button`
     color: var(--white);
-    border: 1px solid var(--white);
-    background: var(--black);
+    border: 1px solid var(--bar);
+    background: var(--bt);
     box-sizing: border-box;
     cursor: pointer;
     padding: 8px;
@@ -18,9 +18,9 @@ const Button = styled.button`
     transition: opacity .3s;
     &:hover,
     &:focus {
-        color: var(--black);
-        border: 1px solid var(--black);
-        background: var(--white);
+        color: var(--white);
+        border: 1px solid var(--bar);
+        background: var(--btHover);
     }
 `;
 

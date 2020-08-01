@@ -116,7 +116,7 @@ function CadastroCategoria() {
             </ul>
             <br />
             <br />
-            <Link to="/">
+            <Link className="ButtonLink" to="/">
                 Ir para home
             </Link>
             <br />

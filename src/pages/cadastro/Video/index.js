@@ -78,8 +78,8 @@ function CadastroVideo() {
             <br />
             <br />
 
-            <Link to="/cadastro/categoria">
-                Cadastrar Categoria
+            <Link className="ButtonLink" to="/cadastro/categoria">
+                Ir para categorias
             </Link>
             <br />
             <br />

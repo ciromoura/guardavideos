@@ -22,7 +22,9 @@ export const VideoCardContainer = styled.a`
   transition: opacity .3s;
   &:hover,
   &:focus {
-    opacity: .5;
+    opacity: .9;
+    border: 4px solid #FFF;
+    filter: brightness(130%);
   }
   
   &:not(:first-child) {
